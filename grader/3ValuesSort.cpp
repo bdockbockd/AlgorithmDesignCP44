@@ -7,6 +7,17 @@ using namespace std;
 
 int timesSwap;
 
+void printData(int *arr, int sizeAr)
+{
+    cout << "--------------------------------" << endl;
+    cout << "array : ";
+    for (int x = 0; x < sizeAr; x++)
+    {
+        cout << arr[x] << " ";
+    }
+    cout << endl;
+}
+
 void swapData(int val, int Da, pair<int, int> Pair, int *arr, int sizeAr, int index)
 {
     cout << "Find value " << val;
@@ -49,6 +60,7 @@ int main()
         data[round] = dataa;
         numberOfEachType[dataa]++;
     }
+    printData(data, number);
     pairBound[1] = make_pair(numberOfEachType[0],
                              numberOfEachType[1] - 1);
     pairBound[2] = make_pair(numberOfEachType[1],
@@ -66,6 +78,7 @@ int main()
                 cout << "changing data index " << i << " val " << data[i] << endl;
                 swapData(val, data[i], pairBound[val], data, number, i);
                 cout << "changed Data index " << i << " val " << data[i] << endl;
+                printData(data, number);
             }
             else if (data[i] == putData[val - 1].second)
             {
@@ -73,9 +86,11 @@ int main()
                 cout << "changing data index " << i << " val " << data[i] << endl;
                 swapData(val, data[i], pairBound[val], data, number, i);
                 cout << "changed Data index " << i << " val " << data[i] << endl;
+                printData(data, number);
             }
         }
     }
+    cout << "---------------------------------" << endl;
     cout << "!!!!!! timesSwap is " << timesSwap << endl;
 
     return 0;
