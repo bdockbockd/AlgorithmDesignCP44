@@ -7,11 +7,11 @@ using namespace std;
 
 int timesSwap;
 
-int swapData(int val, int Da, pair<int, int> Pair, int *arr, int si)
+void swapData(int val, int Da, pair<int, int> Pair, int *arr, int sizeAr, int index)
 {
     cout << "Find value " << val;
-    cout << " for putting in range of " << Pair.first << " , " << Pair.second << endl;
-    for (int i = 0; i <= si; i++)
+    cout << " for putting which not in range of " << Pair.first << " , " << Pair.second << endl;
+    for (int i = 0; i < sizeAr; i++)
     {
         if (i >= Pair.first && i <= Pair.second)
         {
@@ -24,10 +24,11 @@ int swapData(int val, int Da, pair<int, int> Pair, int *arr, int si)
             cout << "index " << i << " now appropiage had been changed to" << arr[i] << endl;
             timesSwap++;
             // cout << "change return" << change << endl;
-            return val;
+            arr[index] = val;
+            return;
         }
     }
-    return 0;
+    return;
 }
 
 int main()
@@ -63,14 +64,14 @@ int main()
             {
                 cout << "---------------------------------" << endl;
                 cout << "changing data index " << i << " val " << data[i] << endl;
-                data[i] = swapData(val, data[i], pairBound[val], data, number);
+                swapData(val, data[i], pairBound[val], data, number, i);
                 cout << "changed Data index " << i << " val " << data[i] << endl;
             }
             else if (data[i] == putData[val - 1].second)
             {
                 cout << "---------------------------------" << endl;
                 cout << "changing data index " << i << " val " << data[i] << endl;
-                data[i] = swapData(val, data[i], pairBound[val], data, number);
+                swapData(val, data[i], pairBound[val], data, number, i);
                 cout << "changed Data index " << i << " val " << data[i] << endl;
             }
         }
