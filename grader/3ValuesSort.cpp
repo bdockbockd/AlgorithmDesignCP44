@@ -9,7 +9,6 @@ int timesSwap;
 
 int swapData(int val, int Da, pair<int, int> Pair, int *arr, int si)
 {
-    cout << "---------------------------------" << endl;
     cout << "Find value " << val;
     cout << " for putting in range of " << Pair.first << " , " << Pair.second << endl;
     for (int i = 0; i <= si; i++)
@@ -62,19 +61,21 @@ int main()
         {
             if (data[i] == putData[val - 1].first)
             {
+                cout << "---------------------------------" << endl;
                 cout << "changing data index " << i << " val " << data[i] << endl;
                 data[i] = swapData(val, data[i], pairBound[val], data, number);
                 cout << "changed Data index " << i << " val " << data[i] << endl;
             }
             else if (data[i] == putData[val - 1].second)
             {
+                cout << "---------------------------------" << endl;
                 cout << "changing data index " << i << " val " << data[i] << endl;
                 data[i] = swapData(val, data[i], pairBound[val], data, number);
                 cout << "changed Data index " << i << " val " << data[i] << endl;
             }
         }
     }
-    cout << "timesSwap is " << timesSwap << endl;
+    cout << "!!!!!! timesSwap is " << timesSwap << endl;
 
     return 0;
 }
