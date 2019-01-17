@@ -9,8 +9,8 @@ int timesSwap;
 
 void printData(int *arr, int sizeAr)
 {
-    cout << "--------------------------------" << endl;
-    cout << "array : ";
+    //cout << "--------------------------------" << endl;
+    //cout << "array : ";
     for (int x = 0; x < sizeAr; x++)
     {
         cout << arr[x] << " ";
@@ -18,28 +18,42 @@ void printData(int *arr, int sizeAr)
     cout << endl;
 }
 
-void swapData(int val, int Da, pair<int, int> Pair, int *arr, int sizeAr, int index)
+void swapData(int val, int Da, pair<int, int> Pair, int *arr, int sizeAr, int index, pair<int, int> *pairBound)
 {
-    cout << "Find value " << val;
-    cout << " for putting which not in range of " << Pair.first << " , " << Pair.second << endl;
-    for (int i = 0; i < sizeAr; i++)
+    //cout << "Find value " << val;
+    //cout << " for putting which not in range of " << Pair.first << " , " << Pair.second << endl;
+
+    for (int i = pairBound[Da].first; i <= pairBound[Da].second; i++)
     {
-        if (i >= Pair.first && i <= Pair.second)
-        {
-            continue;
-        }
         if (arr[i] == val)
         {
-            cout << "index " << i << " not appropiate val " << arr[i] << endl;
+            //cout << "index " << i << " not appropiate val " << arr[i] << endl;
             arr[i] = Da;
-            cout << "index " << i << " now appropiage had been changed to" << arr[i] << endl;
+            //cout << "index " << i << " now appropiage had been changed to" << arr[i] << endl;
             timesSwap++;
             // cout << "change return" << change << endl;
             arr[index] = val;
             return;
         }
     }
-    return;
+    for (int i = 0; i < sizeAr; i++)
+    {
+        if ((i >= Pair.first && i <= Pair.second) || (i <= pairBound[Da].first && i >= pairBound[Da].second))
+        {
+            continue;
+        }
+
+        if (arr[i] == val)
+        {
+            //cout << "index " << i << " not appropiate val " << arr[i] << endl;
+            arr[i] = Da;
+            //cout << "index " << i << " now appropiage had been changed to" << arr[i] << endl;
+            timesSwap++;
+            // cout << "change return" << change << endl;
+            arr[index] = val;
+            return;
+        }
+    }
 }
 
 int main()
@@ -61,7 +75,7 @@ int main()
         numberOfEachType[dataa]++;
     }
     printData(data, number);
-    pairBound[1] = make_pair(numberOfEachType[0],
+    pairBound[1] = make_pair(0,
                              numberOfEachType[1] - 1);
     pairBound[2] = make_pair(numberOfEachType[1],
                              numberOfEachType[1] + numberOfEachType[2] - 1);
@@ -74,24 +88,25 @@ int main()
         {
             if (data[i] == putData[val - 1].first)
             {
-                cout << "---------------------------------" << endl;
-                cout << "changing data index " << i << " val " << data[i] << endl;
-                swapData(val, data[i], pairBound[val], data, number, i);
-                cout << "changed Data index " << i << " val " << data[i] << endl;
-                printData(data, number);
+                //cout << "---------------------------------" << endl;
+                //cout << "changing data index " << i << " val " << data[i] << endl;
+                swapData(val, data[i], pairBound[val], data, number, i, pairBound);
+                //cout << "changed Data index " << i << " val " << data[i] << endl;
+                //printData(data, number);
             }
             else if (data[i] == putData[val - 1].second)
             {
-                cout << "---------------------------------" << endl;
-                cout << "changing data index " << i << " val " << data[i] << endl;
-                swapData(val, data[i], pairBound[val], data, number, i);
-                cout << "changed Data index " << i << " val " << data[i] << endl;
-                printData(data, number);
+                //cout << "---------------------------------" << endl;
+                //cout << "changing data index " << i << " val " << data[i] << endl;
+                swapData(val, data[i], pairBound[val], data, number, i, pairBound);
+                //cout << "changed Data index " << i << " val " << data[i] << endl;
+                //printData(data, number);
             }
         }
     }
-    cout << "---------------------------------" << endl;
-    cout << "!!!!!! timesSwap is " << timesSwap << endl;
+    //cout << "---------------------------------" << endl;
+    //cout << "!!!!!! timesSwap is " << timesSwap << endl;
+    cout << timesSwap << endl;
 
     return 0;
 }
